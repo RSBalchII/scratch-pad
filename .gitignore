@@ -1,0 +1,28 @@
+# Agent config files - local use only (will be removed from working directory)
+agent.json
+chats.json
+skill.json
+AGENTS.md
+SOUL.md
+MEMORY.md
+PROFILE.md
+BOOTSTRAP.md
+HEARTBEAT.md
+
+# Browser data and temp files
+browser/
+dialog/
+file_store/
+media/
+sessions/
+tool_result/
+tool_results/
+
+# Redacted token file
+redact_token.py
+
+# Other non-project files
+jobs.json
+.bootstrap_completed
+.reme_store_v1
+.skill.json.lock
