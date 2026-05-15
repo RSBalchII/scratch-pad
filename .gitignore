@@ -26,3 +26,14 @@ jobs.json
 .bootstrap_completed
 .reme_store_v1
 .skill.json.lock
+
+# Internal agent documentation (do not commit)
+pain-points.md
+memory/
+memory_chunks.jsonl
+memory_file_metadata.json
+
+# Untracked non-project files
+CV-Resume-etc/
+resume_list.txt
+wellfound_screenshot.png

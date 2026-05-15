@@ -144,4 +144,82 @@ Found 28 job links (some duplicate)
 
 ---
 
-*Last Updated: 2026-05-14*
+---
+
+## 2026-05-15: Git Repository Cleanup Session
+
+### 🔧 Git/Repository Issues
+
+#### 1. Messy Repository History with Agent Files
+**Issue:** Working directory contained numerous agent configuration files (AGENTS.md, MEMORY.md, PROFILE.md, SOUL.md, BOOTSTRAP.md, HEARTBEAT.md, agent.json, chats.json, skill.json) that were not part of the actual project code.
+
+**Impact:** These files appeared in git status as modified/deleted (D), creating noise and potential confusion about what should be committed.
+
+**Resolution:** 
+- Created orphan commit on new branch (`main-clean-v4`)
+- Only added project-relevant files: `.gitignore`, `job-leads/`, `cv-resume-2026-05-14/*.md`, `pain-points.md`
+- Deleted old local branches (main-2, main-v3)
+
+**Lesson:** Always verify which files are part of the project vs. agent workspace before committing. Consider using `.gitignore` patterns to exclude agent config directories.
+
+---
+
+#### 2. Multiple Out-of-Sync Branches
+**Issue:** Repository had multiple branches (main, main-2, main-v3) with divergent histories and no clear default branch.
+
+**Impact:** Confusion about which branch is current; remote tracking was misconfigured.
+
+**Resolution:** 
+- Created fresh orphan commit on new branch
+- Pushed clean branch to remote (`origin/main-clean-v4`)
+- Deleted old local branches to reduce clutter
+
+**Lesson:** Before starting a cleanup session, assess the branch structure and plan ahead. May need to delete or merge old branches before creating new ones.
+
+---
+
+#### 3. Windows CRLF Line Ending Warnings
+**Issue:** Git reported CRLF (Windows) vs LF (Unix) line ending warnings for all markdown files:
+```
+warning: in the working copy of 'file.md', CRLF will be replaced by LF the next time Git touches it
+```
+
+**Impact:** While not blocking, these warnings indicate potential cross-platform compatibility issues and unnecessary diffs.
+
+**Resolution:** Files were committed with Windows line endings; future work should consider:
+- Using `.gitattributes` to standardize line endings
+- Configuring git to handle CRLF consistently across platforms
+
+---
+
+#### 4. Remote Branch Management via CLI
+**Issue:** GitHub CLI (`gh`) did not support convenient branch listing/deletion commands for remote branches in this environment.
+
+```bash
+# Expected but unavailable: gh branch list -r origin
+# Available instead: gh api /repos/.../branches (requires manual parsing)
+```
+
+**Impact:** Had to use browser UI or curl API calls to manage remote branches.
+
+**Resolution:** Used GitHub web interface for branch deletion and management.
+
+---
+
+### 📋 Key Takeaways for Future Sessions
+
+1. **Audit before committing:** Check what files are actually part of the project vs. agent workspace
+2. **Use orphan commits for clean starts:** `git checkout --orphan <branch-name>` creates fresh history
+3. **Be explicit about allowed directories** when adding to index
+4. **Document OS-specific issues** (Windows encoding, CRLF) in pain-points.md
+5. **Add pain-points.md to .gitignore** - this is internal agent documentation
+
+---
+
+## Known Limitations
+
+*(See existing limitations section above)*
+
+---
+
+*Last Updated: 2026-05-15*
