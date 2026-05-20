@@ -32,8 +32,17 @@ pain-points.md
 memory/
 memory_chunks.jsonl
 memory_file_metadata.json
+missions
+# Authentication system - credentials storage
+auth/
 
 # Untracked non-project files
 CV-Resume-etc/
 resume_list.txt
 wellfound_screenshot.png
+
+# Archived dated resumes (keep as backup but don't commit)
+job-specific-resumes/archive-resumes/
+
+# Scripts directory - automation scripts (don't commit)
+scripts/
